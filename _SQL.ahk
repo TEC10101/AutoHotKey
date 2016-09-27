@@ -18,8 +18,15 @@ Return
 ;end reloadSwitch
 
 ;CSS / SQL comment out selection
-^+/::
-	Send, ^x/**/{left}{left}
+{Ctrl}9::
+	Send, {Ctrl Up}
+	Send, {Ctrl Down}x{Ctrl Up}/**/{left}{left}
 	Sleep, 50
-	Send, ^v
+	Send, {Ctrl Down}v{Ctrl Up}
 Return
+
+::DB::DATABASE
+
+;::CREATE{A_Space}T::
+;	Send, CREATE TABLE
+;Return

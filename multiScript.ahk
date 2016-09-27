@@ -12,10 +12,19 @@ RAlt::Send {Volume_Down 5}
 Insert::Backspace
 
 ; easier go to left-home of text line
->+End::Home
+>+End::
+	Send, {Rshift UP}{Home}
+Return
 
-;refresh
+>+PgDn::
+	Send, {Rshift Down}{Home}
+Return
+	
+;** F5 / Refresh **
 AppsKey::F5
+!AppsKey::
+	Send, AppsKey
+Return
 
 ;start git shortcuts
 F1::
@@ -39,11 +48,20 @@ Return
 ;Return
 
 ;start CSS.... interferes with the above
-~^/::*/
+^/::*/
 ;Return
 ;end CSS/SQL comment-complete
 
-;killswitch
+^-::
+	Send, -
+Return
++-::
+	Send, _
+Return
+
+-::=
+
+;killswitch keep at bottom/end
 ^!+Del::ExitApp
 ;start reloadSwitch
 ^+#Del::
