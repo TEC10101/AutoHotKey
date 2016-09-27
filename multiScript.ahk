@@ -5,8 +5,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;#NoTrayIcon
 
 ;remap volume laptop
-RCtrl::Send {Volume_Up 5}
-RAlt::Send {Volume_Down 5}
++RCtrl::Send {Volume_Up 5}
++RAlt::Send {Volume_Down 5}
 
 ;retag insert for laptop
 Insert::Backspace
@@ -22,6 +22,8 @@ Return
 	
 ;** F5 / Refresh **
 AppsKey::F5
+RCtrl::F5
+RAlt::F5
 !AppsKey::
 	Send, AppsKey
 Return
