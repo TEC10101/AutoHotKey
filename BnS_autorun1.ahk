@@ -21,16 +21,23 @@ If(LightIsOn)
 {
 	LightIsOn:= !LightIsOn
 	Send {w Up}
-	VAR_JustTurnedOff_with_xUp = 1
 	Hotkey, ~w, Off
 	Hotkey, ~s, Off
 	Hotkey, ~LButton, Off
 }
 Else
 {
+	If(GetKeyState("W", "P"))
+	{
+		KeyWait, w, T0.3
+		If(ErrorLevel = 1)
+		{
+			KeyWait, w
+			Exit
+		}
+	}
 	LightIsOn:= !LightIsOn
-	Send {w down}
-	VAR_TurnOn_with_xUp = 1
+	Send {w Down}
 	Hotkey, ~w, On
 	Hotkey, ~s, On
 	Hotkey, ~LButton, On
@@ -45,35 +52,38 @@ If(LightIsOn)
 	Send {w down}
 	Sleep, 20
 	Send +
-	KeyWait, w
+	;KeyWait, w
 	Hotkey, ~w, On
 	Hotkey, ~s, On
 	Hotkey, ~LButton, On
-	VAR_TurnOn_with_ShiftW = 1
 }
 Else
 {
 	LightIsOn:= !LightIsOn
-	Send {w down}
+	Send {w Down}
 	Send +
 	Hotkey, ~w, On
 	Hotkey, ~s, On
 	Hotkey, ~LButton, On
-	VAR_TurnOn_Light_wasnt_On = 1
 }
 Return
 
 ~s::
-~w::
 ~LButton::
-Hotkey, ~w, Off
 Hotkey, ~s, Off
 Hotkey, ~LButton, Off
 If(LightIsOn)
 {
 	LightIsOn:= !LightIsOn
-	VAR_S_and_W_TurnOff = 1
 	Sleep, 100
 	Send {w Up}
+}
+Return
+
+~w::
+Hotkey, ~w, Off
+If(LightIsOn)
+{
+	LightIsOn:= !LightIsOn
 }
 Return
